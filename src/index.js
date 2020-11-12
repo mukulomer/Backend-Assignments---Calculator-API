@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // your code goes here
 
-app.get('/home',(req,res)=>{
+app.get('/',(req,res)=>{
    
     res.status(200).send("Hello world!");
     return;
@@ -27,7 +27,7 @@ const  Validatebody = (req,res)=> {
     const num1 = parseFloat(req.body.num1);
     const num2 = parseFloat(req.body.num2);
 
-    if (typeof(req.body.num1)==="string" || typeof(req.body.num2)==="string") {
+    if (isNaN(num1) || isNaN(num2) ){
       
         res.send({   status: "error",
         message: "Invalid data types",
@@ -78,6 +78,8 @@ app.post('/add',(req,res)=>{
          result: num1+num2
         };
 
+        
+
         res.send(obj);
      
 
@@ -125,7 +127,7 @@ app.post('/multiply',(req,res)=>{
 
 });
 
-app.post('/division',(req,res)=>{
+app.post('/divide',(req,res)=>{
 
     const num1 = parseFloat(req.body.num1);
     const num2 = parseFloat(req.body.num2);
