@@ -31,6 +31,7 @@ const  Validatebody = (req,res)=> {
       
         res.send({   status: "error",
         message: "Invalid data types",
+        result: undefined
        });
         
         return true;
@@ -42,6 +43,7 @@ const  Validatebody = (req,res)=> {
      {
         res.send({   status: "error",
         message: "Underflow",
+        result: undefined
         })   ;
         return true;
      }
@@ -51,6 +53,7 @@ const  Validatebody = (req,res)=> {
      {
         res.send({   status: "error",
         message: "Overflow",
+        result: undefined
        });
         return true;   
      }
