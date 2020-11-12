@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require("body-parser");
-const Joi = require('joi');
 const port = 3000
 app.use(express.urlencoded());
 
@@ -14,52 +13,30 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // your code goes here
 
-app.get('/api/v1/home',(req,res)=>{
+app.get('/home',(req,res)=>{
    
     res.status(200).send("Hello world!");
     return;
 
 });
 
-app.post('/api/v1/calculator',(req,res)=>{
 
-    const schema = Joi.object({
-        num1: Joi.number().required(),
-        num2: Joi.number().required()
-    });
-    
-    const validationObject = schema.validate(req.body);
-
-    if (validationObject.error) {
-        res.status(400).send("Invalid data types");
-        return;
-    }
-
-   
-    res.send(validationObject);
-    
-
-});
 
 const  Validatebody = (req,res)=> {
-    const schema = Joi.object({
-        num1: Joi.number().required(),
-        num2: Joi.number().required()
-    });
-    
-    const validationObject = schema.validate(req.body);
+   
+    const num1 = parseFloat(req.body.num1);
+    const num2 = parseFloat(req.body.num2);
 
-    if (validationObject.error) {
+    if (typeof(req.body.num1)==="string" || typeof(req.body.num2)==="string") {
       
         res.send({   status: "error",
         message: "Invalid data types",
-       })
+       });
         
         return true;
     }
 
-     const num1 = parseFloat(req.body.num1);
-     const num2 = parseFloat(req.body.num2);
+   
 
      if(num1 <-100000 || num2 >100000  || (num1+num2)<-100000 ||(num1-num2)<-100000 ||(num1*num2)<-100000 ||(num1/num2)<-100000 )
      {
@@ -85,7 +62,7 @@ const  Validatebody = (req,res)=> {
 
 
 
-app.post('/api/v1/calculator/add',(req,res)=>{
+app.post('/add',(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -106,7 +83,7 @@ app.post('/api/v1/calculator/add',(req,res)=>{
 
 });
 
-app.post('/api/v1/calculator/sub',(req,res)=>{
+app.post('/sub',(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -127,7 +104,7 @@ app.post('/api/v1/calculator/sub',(req,res)=>{
 
 });
 
-app.post('/api/v1/calculator/multiply',(req,res)=>{
+app.post('/multiply',(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -148,16 +125,10 @@ app.post('/api/v1/calculator/multiply',(req,res)=>{
 
 });
 
-app.post('/api/v1/calculator/division',(req,res)=>{
-
-    if(Validatebody(req,res))
-    {
-         return;
-    }
+app.post('/division',(req,res)=>{
 
     const num1 = parseFloat(req.body.num1);
     const num2 = parseFloat(req.body.num2);
-     
 
     if(num2===0)
     {
@@ -168,6 +139,10 @@ app.post('/api/v1/calculator/division',(req,res)=>{
         return;
     }
 
+    if(Validatebody(req,res))
+    {
+         return;
+    }
 
      const obj ={
         status: "success",
