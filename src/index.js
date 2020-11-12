@@ -31,7 +31,6 @@ const  Validatebody = (req,res)=> {
       
         res.send({   status: "error",
         message: "Invalid data types",
-        result: undefined
        });
         
         return true;
@@ -43,7 +42,6 @@ const  Validatebody = (req,res)=> {
      {
         res.send({   status: "error",
         message: "Underflow",
-        result: undefined
         })   ;
         return true;
      }
@@ -53,7 +51,6 @@ const  Validatebody = (req,res)=> {
      {
         res.send({   status: "error",
         message: "Overflow",
-        result: undefined
        });
         return true;   
      }
@@ -78,7 +75,7 @@ app.post('/add',(req,res)=>{
      const obj ={
         status: "success",
         message: "the sum of given two numbers",
-         result: num1+num2
+         sum: num1+num2
         };
 
         
@@ -101,7 +98,7 @@ app.post('/sub',(req,res)=>{
      const obj ={
         status: "success",
         message: "the difference of given two numbers",
-        result: num1-num2
+        difference: num1-num2
         };
 
         res.send(obj);
