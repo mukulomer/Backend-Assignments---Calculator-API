@@ -29,7 +29,7 @@ const  Validatebody = (req,res)=> {
 
     if (isNaN(num1) || isNaN(num2) ){
       
-        res.send({   status: "error",
+        res.send({   status: "failure",
         message: "Invalid data types",
        });
         
@@ -62,7 +62,7 @@ const  Validatebody = (req,res)=> {
 
 
 
-app.post('/add',(req,res)=>{
+app.post("/add",(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -85,7 +85,7 @@ app.post('/add',(req,res)=>{
 
 });
 
-app.post('/sub',(req,res)=>{
+app.post("/sub",(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -106,7 +106,7 @@ app.post('/sub',(req,res)=>{
 
 });
 
-app.post('/multiply',(req,res)=>{
+app.post("/multiply",(req,res)=>{
 
     if(Validatebody(req,res))
     {
@@ -127,7 +127,7 @@ app.post('/multiply',(req,res)=>{
 
 });
 
-app.post('/divide',(req,res)=>{
+app.post("/divide",(req,res)=>{
 
     const num1 = parseFloat(req.body.num1);
     const num2 = parseFloat(req.body.num2);
